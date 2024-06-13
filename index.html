@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <title>Gokotta</title>
+    </head>
+    <body>
+
+        <h1 align="center">Gokotta songs</h1>
+
+        <h1 align="center">Gokotta</h1>
+
+        <p class="gokotta_img">
+            <img src="gokotta.png" alt="gokotta" style="float:right;width:512px;height:512px;">
+        </p>
+
+        <div class="Main">
+            <p>Gokotta - это функциональный язык программирования на основе лямбда-исчисления.</p>
+            <p>Язык универсален и может реализовывать рекурсию.</p>
+        </div>
+
+        <div class="Doc">
+            <h2>Документация языка Gokotta</h2>
+        </div>
+
+        <div class="Main">
+
+            <p>Все синтаксически отличные единицы пишутся через пробел (исключением выступают имена и значения).<p>
+            
+            <p>В Gokotta определенные однопараметрические именованные функции. 
+                <br>Создаются они с помощью ключевого слова <mark><b>let</b></mark>, имени функции и ее тела.</p>
+            <p>Приведём пример простейшей функции без аргумента <mark><b>let</b></mark>.</p>
+        </div>
+
+        <div class="frame">
+            <p class="title">&nbsp;Переменная FIVE</p>
+
+            <p class="code">
+                let FIVE<br>
+                &emsp;&nbsp;5<br>
+                <br>
+                [FIVE] { 0 }
+            </p>
+
+        </div>
+
+        <div class="Text">
+            <p>
+                В данном примере была проинициализирована именованная функция FIVE с возвращаемым значением 5.
+                В последней строчке продемонстрирован ее вызов.
+                Для вызова функции необходимо заключать её название в квадратные скобки, 
+                а аргумент указать в фигурных скобках <mark>[FIVE] { 0 }</mark>.
+                Так как функция FIVE не имеет аргументов, ей передаётся незначащий ноль.<br>
+                Замечание: рекомендуется, чтобы в теле любого <mark><b>let</b></mark> 
+                    был использован как минимум один <mark><b>action</b></mark> (см. примеры ниже).
+                <br>&nbsp;
+            </p>
+        </div>
+
+        <div class="Text">
+            <p> 
+                Согласно определению лямбда-исчисления в языке заданы аппликация и абстракция.<br>
+                Аппликация - применение или вызов функции по отношению к заданному аргументу, с помощью <mark>[FUNC] { ARG }</mark>. <br>
+                Абстракция - создание функции с помощью ключевых слов <mark><b>let, let_rec, action</b></mark>. <br>
+                Это обеспечивает полноту языка.
+            </p>
+        </div>
+
+        <div class="Text">
+            <p>
+                Функции в Gokotta обладают свойством замыкания. 
+                То есть функции могут ссылаться на другие функции,
+                объявленные вне ее тела и не являющиеся её параметрами.
+            </p>
+        </div>
+
+        <div class="Text">
+            <p>
+                Лямбда-выражения обозначаются ключевым словом <mark><b>action</b></mark>.<br>
+                Лямбда-функция принимает на вход аргумент и вычисляет по нему заданное выражение.<br>
+                Посе <mark><b>action</b></mark> идёт имя переменной, а затем выражение.
+                Если <mark><b>action</b></mark> возвращает только самого себя и не участвует в арифметическом выражении, 
+                то необходимо возвращать его в виде примитивного выражения (например, умножение на 1 или сложение с 0) 
+                или писать в качестве его аргумента <mark>{ null }</mark>.
+            </p>
+        </div>
+
+        <div class="Text">
+            <h3><br>Арифметические операции</h3>
+
+            <p>
+                В языке определены следующие арифметические операции:
+                <ul style="margin-left: 20px;">
+                    <li>+ &mdash; сложение двух чисел</li>
+                    <li>- &mdash; вычитание одного число из другого</li>
+                    <li>* &mdash; умножение двух чисел</li>
+                    <li>/ &mdash; деление одного числа на друге</li>
+                    <li>% &mdash; нахождение остатка от деления</li>
+                    <li>** &mdash; возведение числа в степень</li>
+                    <li>++ &mdash; инкремент числа</li>
+                    <li>-- &mdash; декремент числа</li>
+                    <li>~ &mdash; унарный минус</li>
+                </ul>
+            </p>
+
+            <p>
+                Арифметические выражения записываются в двойных угловых скобках: <mark><< выражение >></mark>.
+            </p>
+
+            <p>
+                С помощью круглых скобок можно задавать порядок действий в выражении.
+            </p>
+
+            <p>
+                Приведём пример арифметических выражений на Gokotta.<br>
+                Пусть у нас есть уравнение: <mark>x^2 + 2x - 3 = 0</mark>. 
+                Попробуем найти сумму двух его решениями.
+            </p>
+
+        </div>
+
+        <div class="frame">
+            <p class="title">&nbsp;Арифметика</p>
+
+            <p class="code">
+                let a<br>
+                &emsp;&nbsp;action go_a << 1 >><br>
+                let b<br>
+                &emsp;&nbsp;action go_b << 2 >><br>
+                let c<br>
+                &emsp;&nbsp;action go_c << -3 >><br>
+                let d<br>
+                &emsp;&nbsp;action go_d << [b] { 0 } ** 2 -  4 * [a] { 0 } * [c] { 0 } >><br>
+                let x1<br>
+                &emsp;&nbsp;action go_x1 << ( ~ [b] { 0 } + [d] { 0 } ** 0,5 ) / ( 2 * [a] { 0 } ) >><br>
+                let x2<br>
+                &emsp;&nbsp;action go_x2 << ( ~ [b] { 0 } - [d] { 0 } ** 0,5 ) / ( 2 * [a] { 0 } ) >><br>
+                    <br>
+                << [x1] { 0 } + [x2] { 0 } >>
+            </p>
+
+        </div>
+
+        <div class="Text"> 
+            <p>
+                Корни уравнения: <mark>x1 = 1</mark> и <mark>x2 = -3</mark>.
+                Программа выводит результат (сумму x1 и x2) равный -2.
+            </p>
+        </div>
+
+        <div class="Text"> 
+            <p>
+                <dl>
+                    Также в языке определены
+                    <dt style="margin-left: 10px;">Операции сравнения:</dt>
+                    <dd>
+                        <ul style="margin-left: 5px;">
+                            <li>> &mdash; больше</li>
+                            <li>>= &mdash; больше или равно</li>
+                            <li>< &mdash; меньше</li>
+                            <li><= &mdash; меньше или равно</li>
+                            <li>= &mdash; равны</li>
+                            <li>!= &mdash; не равны</li>
+                        </ul>
+                    </dd>
+                    <dt style="margin-left: 10px;">Логические операции:</dt>
+                    <dd>
+                        <ul style="margin-left: 5px;">
+                            <li>|| &mdash; дизъюнкция</li>
+                            <li>&& &mdash; конъюнкция</li>
+                            <li>! &mdash; инверсия</li>
+                        </ul>
+                    </dd>
+                </dl>
+            </p>
+        </div>
+
+        <div class="Text"> 
+            <p>
+                Gokotta работает как с целыми числами, так и с дробными.<br>
+                Во втором случае дробная часть числа пишется через запятую/
+                точку в зависимости от региона: <mark>1,5</mark> или <mark>1.5</mark>.<br>
+                Преобразование целочисленного типа в тип с плавающей точкой происходит неявно, поэтому выражение,
+                в котором имеются два разных типа, будет корректно выполняться без необходимости явных приведений.
+            </p>
+        </div>
+
+        <div class="Text"> 
+            <p>
+                Инфиксная форма записи выражений является не единственной возможной для Gokotta.
+                Особенностью языка является возможность записи арифметических выражений в польской нотации.
+                Для этого арифметическое выражение нужно писать без угловых скобок. 
+            </p>
+        </div>
+
+        <div class="Text">
+            <h3><br>Возможности языка</h3>
+
+            <h4>Оператор условия</h4>
+            <p>
+                В языке определён оператор условия <mark><b>if-else</b></mark>.<br>
+                Если условие, следуемое после ключевого слова <mark><b>if</b></mark> верно,
+                то выполняется выражение следующее после него.
+                Иначе выполняется выражение после <mark><b>else</b></mark>.<br>
+                Оператор <mark><b>if-else</b></mark> допускает вложенность.
+                <br>&nbsp;
+            </p>
+        </div>
+
+        <div class="Text">
+            <h4>Рекурсивные функции</h4>
+
+            <p>
+                В Gokotta есть возможность создавать рекурсивные функции.<br>
+                Делается это при помощи ключевого слова <mark><b>let_rec</b></mark>.<br>
+                В отличие от функции, заданной через <mark><b>let</b></mark>, 
+                функция, созданная по средством <mark><b>let_rec</b></mark>
+                может вызывать саму себя в теле функции.
+            </p>
+
+            <p>
+                Используя <mark><b>let_rec</b></mark>,
+                можно написать рекурсивную функцию нахождения факториала числа.
+            </p>
+        </div>
+
+        <div class="frame">
+            <p class="title">&nbsp;Факториал 10</p>
+
+            <p class="code">
+                let_rec fact<br>
+                &emsp;&nbsp;action x<br>   
+                &emsp;&nbsp;&emsp;&nbsp;if << [x] <= 1 >><br> 
+                &emsp;&nbsp;&emsp;&nbsp;&emsp;&nbsp;<< 1 >><br>
+                &emsp;&nbsp;&emsp;&nbsp;else<br>   
+                &emsp;&nbsp;&emsp;&nbsp;&emsp;&nbsp;<< [x] * [fact] { << [x] - 1 >> } >><br>
+                            <br>
+                << [fact] { 10 } >>
+            </p>
+
+        </div>
+
+        <div class="Text">
+            <p>
+                После выполнения рекурсивной функции, программа выведет ответ: <mark>3 628 800</mark>.
+                <br>&nbsp;
+            </p>
+        </div>
+
+        <div class="Text">
+            <h4>Комментирование кода</h4>
+            <p>
+                Во время написания или отладки кода, 
+                может понадобиться возможность оставить комментарий к коду или 
+                способ убрать часть кода из контекста выполнения программы.
+            </p>
+            <p>
+                Для этого в Gokotta введена возможность комментирования кода, с помощью оператора решётки, 
+                который стоит перед и после комментария <mark><b># ... #</b></mark>. 
+                Все, что заключено в комментарий, игнорируется во время выполнения программы.
+            </p>
+        </div>
+
+        <div class="frame">
+            <p class="title">&nbsp;Комментарии</p>
+
+            <p class="code">
+                # Однострочный комментарий #<br>
+                <br>
+                #<br>
+                &emsp;&nbsp;Комментарий <br>
+                &emsp;&nbsp;на<br>
+                &emsp;&nbsp;несколько<br>
+                &emsp;&nbsp;строк<br>
+                #
+            </p>
+
+        </div>
+
+        <p>
+            <br>
+        </p>
+
+        <div class="Text">
+            <h4>Функция с двумя аргументами, метод упаковки чисел</h4>
+
+            <p>
+                По стандарту функции в языке могут принимать только один аргумент.
+                Но это можно исправить с мощью метода упаковки аргументов.<br>
+                Определим функции с приставкой <mark><b>zip</b></mark> и <mark><b>unzip</b></mark>, 
+                оторые упаковывают два целых числа в одно, а внутри функции распаковывают их.
+            </p>
+
+            <p>
+                Приведём пример программы, которая будет использовать упаковку аргументов.<br>
+                Программа будет вычислять наибольший общий делитель для двух чисел меньших 10000.
+            </p>
+        </div>
+        
+        <div class="frame">
+            <p class="title">&nbsp;Вычисление НОД для двух чисел</p>
+
+            <p class="code">
+                let a action go_a << 5 * 5 * 3 * 7 >><br>
+                let b action go_b << 5 * 3 >><br>
+                <br>
+                let zip_first<br>
+                &emsp;&nbsp;action go_zip_first<br>
+                &emsp;&nbsp;&emsp;&nbsp;<< [go_zip_first] * 10000 >><br>
+                let zip_second<br>
+                &emsp;&nbsp;action go_zip_second<br>
+                &emsp;&nbsp;&emsp;&nbsp;<< [go_zip_second] * 1 >> # или [go_zip_second] { null } #<br>
+                let unzip_first <br>
+                &emsp;&nbsp;action go_unzip_first<br>
+                &emsp;&nbsp;&emsp;&nbsp;<< [go_unzip_first] / 10000 >><br>
+                let unzip_second<br>
+                &emsp;&nbsp;action go_unzip_second<br>
+                &emsp;&nbsp;&emsp;&nbsp;<< [go_unzip_second] % 10000 >>	<br>
+                let first <br>
+                &emsp;&nbsp;action go_first <br>
+                &emsp;&nbsp;&emsp;&nbsp;<< [unzip_first] { [go_first] } >><br>
+                let second <br>
+                &emsp;&nbsp;action go_second <br>
+                &emsp;&nbsp;&emsp;&nbsp;<< [unzip_second] { [go_second] } >><br>
+                let_rec NOD <br>
+                &emsp;&nbsp;action zip<br>
+                &emsp;&nbsp;&emsp;&nbsp;if << [first] { [zip] } != 0 && [second] { [zip] } != 0 >><br>
+                            <br>
+                &emsp;&nbsp;&emsp;&nbsp;&emsp;&nbsp;if << [first] { [zip] } > [second] { [zip] } >>	<br>
+                                <br>
+                &emsp;&nbsp;&emsp;&nbsp;&emsp;&nbsp;&emsp;&nbsp;<< [NOD] { << [zip_first] { << [first] { [zip] } % [second] {<br> 
+                &emsp;&nbsp;&emsp;&nbsp;&emsp;&nbsp;&emsp;&nbsp;[zip] } >> } + [zip_second] { [second] { [zip] } }  >> } >> <br>
+                &emsp;&nbsp;&emsp;&nbsp;&emsp;&nbsp;else<br>
+                &emsp;&nbsp;&emsp;&nbsp;&emsp;&nbsp;&emsp;&nbsp;<< [NOD] { << [zip_first] { [first] { [zip] } } + [zip_second] { <br>
+                &emsp;&nbsp;&emsp;&nbsp;&emsp;&nbsp;&emsp;&nbsp;<< [second] { [zip] } % [first] { [zip] } >> } >> } >> <br>
+                &emsp;&nbsp;&emsp;&nbsp;else<br>
+                &emsp;&nbsp;&emsp;&nbsp;&emsp;&nbsp;<< [first] { [zip] } + [second] { [zip] } >><br>
+                            <br>
+                << [NOD] { << [zip_first] { [a] { 0 } } + [zip_second] { [b] { 0 } } >> } >><br>
+            </p>
+
+        </div>
+
+        <div class="Text">
+            <h3><br>Реализованные функции</h3>
+
+            <p>
+                В языке реализованы следующие функции:
+                <ul style="margin-left: 10px;">
+                    <li>Именованные переменные (<mark><b>let</b></mark>)</li>
+                    <li>Рекурсия</li>
+                    <li>Функции</li>
+                    <li>Замыкания</li>
+                </ul>
+            </p>
+
+        </div>
+
+    </body>
+</html>
